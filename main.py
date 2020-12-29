@@ -3,8 +3,9 @@ from selenium import webdriver
 import sys
 import os
 import time
+import urllib.request
 
-def getImages_URL(query:str, max_images:int, driver:webdriver, sleep_time = 1):
+def getImagesURL(query:str, max_images:int, driver:webdriver, sleep_time = 1):
     # Resultado da pesquisa
     driver.get('https://www.google.com/imghp')
     search = driver.find_element_by_css_selector('input.gLFyf')
@@ -45,8 +46,13 @@ def getImages_URL(query:str, max_images:int, driver:webdriver, sleep_time = 1):
     return urls
         
         
-
-
+def downloadImages(folder, file_names, urls):
+    for i, url in enumerate(urls):
+        try:
+            path = os.path.join(folder, file_names+f'{i:06d}'+'.jpg')
+            urllib.request.urlretrieve(url, filename=path)
+        except:
+            continue
 
 
 
@@ -57,9 +63,11 @@ if os.environ.get('DISPLAY','') == '':
 option =  webdriver.FirefoxOptions()
 option.add_argument("--no-sandbox")
 option.add_argument("--disable-dev-shm-usage")
-#option.add_argument("--headless")
+option.add_argument("--headless")
 
 WEBDRIVER_PATH = '/home/alexjr/Dev/google_img/geckodriver'
 driver = webdriver.Firefox(options=option)
 
-urls = getImages_URL('Lua Cheia', 15, driver, 1)
+urls = getImagesURL('Lua cheia', 100, driver)
+
+downloadImages('./img', 'lua_cheia', urls)
