@@ -3,7 +3,9 @@ from selenium import webdriver
 import sys
 import os
 import time
-import urllib.request
+from PIL import Image
+import requests
+import io
 
 def getImagesURL(query:str, max_images:int, driver:webdriver, sleep_time = 1):
     def scrollToEnd(driver, max_images):
@@ -63,14 +65,21 @@ def getImagesURL(query:str, max_images:int, driver:webdriver, sleep_time = 1):
     return urls
         
         
-def downloadImages(folder, file_names, urls):
+def downloadImages(folder, file_names, url):
     for i, url in enumerate(urls):
+        path = os.path.join(folder, file_names+f'{i:06d}'+'.jpg')
         try:
-            path = os.path.join(folder, file_names+f'{i:06d}'+'.jpg')
-            urllib.request.urlretrieve(url, filename=path)
+            downloadImage(path, url)
         except:
             continue
-
+        
+def downloadImage(path, url):
+    image = requests.get(url).content
+    image_file = io.BytesIO(image)
+    save_image = Image.open(image_file).convert('RGB')
+    with open(path, 'wb') as file:
+        save_image.save(file, 'JPEG', quality=85)
+    
 
 
 if os.environ.get('DISPLAY','') == '':
@@ -85,7 +94,7 @@ option.add_argument("--headless")
 WEBDRIVER_PATH = '/home/alexjr/Dev/google_img/geckodriver'
 driver = webdriver.Firefox(options=option)
 
-query = input('Query')
+query = input('Query: ')
 max_images = int(input('Quantas imagens quer baixar?'))
 file_names = input('Nome que ira nos arquivos: ')
 
