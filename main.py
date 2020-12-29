@@ -34,7 +34,7 @@ def getImagesURL(query:str, max_images:int, driver:webdriver, sleep_time = 1):
     driver.get('https://www.google.com/imghp')
     search = driver.find_element_by_css_selector('input.gLFyf')
     button = driver.find_element_by_css_selector('button.Tg7LZd')
-    search.send_keys('Lua cheia')
+    search.send_keys(query)
     button.click()
 
 
@@ -66,13 +66,17 @@ def getImagesURL(query:str, max_images:int, driver:webdriver, sleep_time = 1):
         
         
 def downloadImages(folder, file_names, url):
+    if not os.path.exists(folder):
+        os.makedirs(folder)
+
     for i, url in enumerate(urls):
         path = os.path.join(folder, file_names+f'{i:06d}'+'.jpg')
         try:
             downloadImage(path, url)
         except:
             continue
-        
+
+
 def downloadImage(path, url):
     image = requests.get(url).content
     image_file = io.BytesIO(image)
@@ -80,7 +84,6 @@ def downloadImage(path, url):
     with open(path, 'wb') as file:
         save_image.save(file, 'JPEG', quality=85)
     
-
 
 if os.environ.get('DISPLAY','') == '':
     os.environ.__setitem__('DISPLAY', ':0.0')
@@ -95,8 +98,9 @@ WEBDRIVER_PATH = '/home/alexjr/Dev/google_img/geckodriver'
 driver = webdriver.Firefox(options=option)
 
 query = input('Query: ')
-max_images = int(input('Quantas imagens quer baixar?'))
+max_images = int(input('Múmero de imagens: '))
 file_names = input('Nome que ira nos arquivos: ')
+folder = input('Nome da pasta: ')
 
 urls = getImagesURL(query, max_images, driver)
-downloadImages('./img', file_names, urls)
+downloadImages(folder, file_names, urls)
