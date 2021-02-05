@@ -1,1 +1,1 @@
-# Google_Image_Downloader
+<h1 align="center"> Google Image Downloader </h1>

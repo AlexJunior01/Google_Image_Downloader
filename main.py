@@ -1,5 +1,4 @@
 # Bibliotecas utilizadas no scrap
-import bs4
 from selenium import webdriver
 import sys
 import os
