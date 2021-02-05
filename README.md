@@ -36,9 +36,9 @@
 ## Pré-requisitos
 Para rodar a aplicação você vai precisar ter instalado as seguintes ferramentas:
 
-* [Python](https://www.python.org/downloads/)
-* [Firefox Browser](https://www.mozilla.org/pt-BR/firefox/new/)
-* [geckodriver](https://github.com/mozilla/geckodriver/releases)
+* <a href="https://www.python.org/downloads/" target="_blank">Python</a>
+* <a href="https://www.mozilla.org/pt-BR/firefox/new/" target="_blank">Firefox Browser</a>
+* <a href="https://github.com/mozilla/geckodriver/releases" target="_blank">geckodriver</a>
 
 O geckodriver tem que ser colocado no PATH do Python para funcionar corretamente. 
 
@@ -77,7 +77,7 @@ Nome da pasta:
 ---
 ## Autor
 
-<a href="https://www.linkedin.com/in/alexmomijunior/">
+<a href="https://www.linkedin.com/in/alexmomijunior/" target="_blank">
  <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/52081735?s=460&u=2437c208a444d7714f5ba964f364eab5abcb1073&v=4" width="100px;" alt=""/>
  <br/>
  <sub><b>Alex Junior</b></sub></a>
@@ -85,14 +85,14 @@ Nome da pasta:
 
 
 
-<a href="https://www.linkedin.com/in/alexmomijunior/">
+<a href="https://www.linkedin.com/in/alexmomijunior/" target="_blank">
  <img src="https://img.shields.io/badge/-LinkedIn-blue?style=flat-square&logo=Linkedin&logoColor=white">
 </a>
-<a href="https://alexmomijunior.medium.com/">
+<a href="https://alexmomijunior.medium.com/" target="_blank">
  <img src="https://img.shields.io/badge/-Medium-black?style=flat-square&logo=Medium&logoColor=white">
 </a>
 </a>
-<a href="mailto:alexmomijunior@gmail.com">
+<a href="mailto:alexmomijunior@gmail.com" target="_blank">
  <img src="https://img.shields.io/badge/-alexmomijunior@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white">
 </a>
 
